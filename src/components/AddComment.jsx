@@ -5,19 +5,34 @@ import { UserContext } from "../context/UserContext";
 export const AddComment = ({ article_id, setComments }) => {
   const [text, setText] = useState("");
   const [validate, setValidate] = useState(true);
+  const [err, setErr] = useState(true);
   const { user } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text.length < 1) {
-      return setValidate(false);
-    } else {
-      setValidate(true);
-      setComments((current) => {
-        return [...current, { author: user.username, body: text }];
-      });
-      postComment(article_id, { ...user, body: text });
-      setText("");
+    if (err) {
+      console.log(err);
+      if (text.length < 1) {
+        return setValidate(false);
+      } else {
+        setValidate(true);
+
+        setComments((current) => {
+          return [...current, { author: user.username, body: text }];
+        });
+        setText("");
+      }
+      postComment(article_id, { ...user, body: text })
+        .then(() => {
+          alert("Your comment is successfully updated");
+        })
+        .catch(() => {
+          alert("something went wrong your comment is not updated");
+          setErr(false);
+          setComments((current) => {
+            return [...current];
+          });
+        });
     }
   };
   return (

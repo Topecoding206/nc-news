@@ -1,5 +1,4 @@
-import { ArticleCard } from "./ArticleCard";
-export const Home = ({ articles, isLoading }) => {
+
   return (
     <main>
       {isLoading ? (

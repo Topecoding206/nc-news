@@ -22,7 +22,7 @@ export const SingleArticle = () => {
         <p className="center">Loading...</p>
       ) : (
         <section>
-          <div className="flex">
+          <div>
             {articleById.map(
               ({
                 article_id,
@@ -58,9 +58,6 @@ export const SingleArticle = () => {
             )}
 
             <Comments article_id={article_id} />
-          </div>
-          <div className="new-comment">
-            <button className="">Add Comment</button>
           </div>
         </section>
       )}

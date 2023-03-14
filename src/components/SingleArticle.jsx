@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchArticles } from "../utility/api";
 import { Comments } from "./Comments";
+import { VoteArticle } from "./VoteArticle";
 
 export const SingleArticle = () => {
   const { article_id } = useParams();
@@ -50,9 +51,7 @@ export const SingleArticle = () => {
                     <p className="justify">
                       <strong className="block">Description:</strong> {body}
                     </p>
-                    <div className="cta">
-                      <button>votes: {votes}</button>
-                    </div>
+                    <VoteArticle votes={votes} article_id={article_id} />
                   </article>
                 );
               }

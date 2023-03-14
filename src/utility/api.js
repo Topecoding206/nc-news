@@ -21,3 +21,7 @@ export const fetchComments = (article_id) => {
 export const AddVote = (id, inc_votes) => {
   return api.patch(`/articles/${id}`, inc_votes);
 };
+
+export const postComment = (id, body) => {
+  return api.post(`/articles/${id}/comment`, body);
+};

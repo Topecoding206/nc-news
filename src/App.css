@@ -117,7 +117,16 @@ button {
   font-size: 1.3rem;
   background-color: transparent;
 }
-
+textarea {
+  border: 2px solid;
+}
+.post-comment-container {
+  border: 1px solid;
+  text-align: center;
+}
+.post-comment-container button {
+  margin-left: 1em;
+}
 @media screen and (min-width: 600px) {
   .sort-container {
     font-size: 1.4rem;

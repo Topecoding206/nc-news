@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { VoteArticle } from "./VoteArticle";
 export const ArticleCard = ({
   article_id,
   title,
@@ -6,6 +7,7 @@ export const ArticleCard = ({
   author,
   created_at,
   article_img_url,
+  votes,
 }) => {
   return (
     <article key={article_id}>
@@ -20,9 +22,12 @@ export const ArticleCard = ({
       </Link>
       <p key={title}>Title: {title}</p>
       <p key={author}>Author: {author}</p>
-      <Link to={`/articles/${article_id}`}>
-        <button>View more details</button>
-      </Link>
+      <VoteArticle article_id={article_id} votes={votes} />
+      <p className="center-button">
+        <Link to={`/articles/${article_id}`}>
+          <button>View more details</button>
+        </Link>
+      </p>
     </article>
   );
 };

@@ -44,6 +44,7 @@ export const Home = () => {
                 author,
                 created_at,
                 article_img_url,
+                votes,
               }) => {
                 return (
                   <ArticleCard
@@ -53,6 +54,7 @@ export const Home = () => {
                     created_at={created_at}
                     article_img_url={article_img_url}
                     article_id={article_id}
+                    votes={votes}
                   />
                 );
               }

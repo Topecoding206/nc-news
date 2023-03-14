@@ -95,15 +95,27 @@ button {
   overflow-y: scroll;
   margin: 0 auto;
   margin-bottom: 2em;
+  padding: 0.5em;
 }
 .new-comment {
   text-align: center;
   margin-top: -13px;
   margin-bottom: 2em;
 }
-.flex {
-  display: flex;
-  flex-direction: column;
+.center-button {
+  text-align: center;
+}
+.like-button {
+  cursor: pointer;
+}
+.checked {
+  color: aqua;
+  background-color: transparent;
+  font-size: 1.3rem;
+}
+.unchecked {
+  font-size: 1.3rem;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 600px) {
@@ -134,7 +146,7 @@ button {
     font-size: 1.5rem;
   }
   button {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
   .article_container {
     width: 80%;

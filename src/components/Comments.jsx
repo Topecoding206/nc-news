@@ -21,10 +21,7 @@ export const Comments = ({ article_id }) => {
               <strong>{author}: </strong>
               <span>{body}</span>{" "}
             </p>
-            <p>
-              <strong>votes: </strong>
-              {votes}
-            </p>
+
             <br />
           </div>
         );

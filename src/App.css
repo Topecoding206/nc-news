@@ -128,11 +128,14 @@ button {
     flex-direction: row;
   }
   .articles-container article {
-    width: 30%;
+    width: 28%;
+  }
+  .articles-container p {
+    font-size: 1.3rem;
   }
   .article_container {
     width: 100%;
-    border: 1px solid;
+
     font-size: 1.2rem;
   }
   .article_container img {
@@ -141,5 +144,9 @@ button {
   .cta {
     flex-direction: row;
     font-size: 1rem;
+  }
+  .justify {
+    width: 70%;
+    margin: 0 auto;
   }
 }

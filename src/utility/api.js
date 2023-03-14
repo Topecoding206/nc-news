@@ -4,10 +4,4 @@ const api = axios.create({
   baseURL: "https://first-backend-project-nsxj.onrender.com/api",
 });
 
-export const fetchArticles = (article_id) => {
-  const url = `/articles${article_id === undefined ? "" : `/${article_id}`}`;
-
-  return api.get(url).then(({ data }) => {
-    return data;
-  });
 };

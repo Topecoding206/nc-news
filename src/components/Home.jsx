@@ -1,5 +1,16 @@
+import { useEffect, useState } from "react";
 import { ArticleCard } from "./ArticleCard";
-export const Home = ({ articles, isLoading }) => {
+import { fetchArticles } from "../utility/api";
+export const Home = () => {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    setisLoading(true);
+    fetchArticles().then((data) => {
+      setArticles(data.articles);
+      setisLoading(false);
+    });
+  }, []);
   return (
     <main>
       {isLoading ? (

@@ -1,6 +1,5 @@
 import { ArticleCard } from "./ArticleCard";
 export const Articles = ({ articles, topicArticles }) => {
-  //   console.log(articles);
   const displayArticles = articles ? articles : topicArticles;
 
   return (

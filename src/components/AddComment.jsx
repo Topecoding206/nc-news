@@ -11,7 +11,6 @@ export const AddComment = ({ article_id, setComments }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (err) {
-      console.log(err);
       if (text.length < 1) {
         return setValidate(false);
       } else {

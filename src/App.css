@@ -138,6 +138,11 @@ textarea {
   border: 1px solid;
   margin-bottom: 1em;
 }
+.comment-body {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+}
 @media screen and (min-width: 600px) {
   .sort-container {
     font-size: 1.4rem;

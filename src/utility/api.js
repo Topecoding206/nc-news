@@ -43,3 +43,8 @@ export const fetchArticlesByTopic = (topic, sort, order) => {
       return data;
     });
 };
+
+export const deleteComment = (id) => {
+  if (!id) return Promise.reject();
+  return api.delete(`/comments/${id}`);
+};

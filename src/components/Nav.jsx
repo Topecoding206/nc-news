@@ -6,8 +6,9 @@ export const Nav = () => {
         <Link to="/">
           <li>All Articles</li>
         </Link>
-        <li>Topics</li>
-
+        <Link to="/articles/coding">
+          <li>Topics</li>
+        </Link>
         <Link to="/users">
           <li>Users</li>
         </Link>

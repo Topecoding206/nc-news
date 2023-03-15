@@ -17,7 +17,7 @@ export const ArticleCard = ({
         {` ${new Date(created_at).toDateString()},
           ${new Date(created_at).toLocaleTimeString()}`}
       </p>
-      <Link to={`/articles/${article_id}`}>
+      <Link to={`/articles/${topic}/${article_id}`}>
         <img src={article_img_url} alt="" key={article_img_url} />
       </Link>
       <p key={title}>Title: {title}</p>

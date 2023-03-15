@@ -25,3 +25,21 @@ export const AddVote = (id, inc_votes) => {
 export const postComment = (id, body) => {
   return api.post(`/articles/${id}/comment`, body);
 };
+
+export const fetchTopics = () => {
+  return api.get("/topics").then(({ data }) => {
+    return data.topics;
+  });
+};
+
+export const fetchArticlesByTopic = (topic, sort, order) => {
+  return api
+    .get("/articles", {
+      params: {
+        topic: topic,
+      },
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};

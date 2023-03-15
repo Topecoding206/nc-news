@@ -6,6 +6,7 @@ import { Articles } from "./Articles";
 export const Home = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+
   useEffect(() => {
     setisLoading(true);
     fetchArticles().then((data) => {

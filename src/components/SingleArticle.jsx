@@ -5,16 +5,17 @@ import { Comments } from "./Comments";
 import { VoteArticle } from "./VoteArticle";
 
 export const SingleArticle = () => {
-  const { article_id } = useParams();
+  const { article_id, topics } = useParams();
   const [articleById, setArticleById] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const displayArticle = article_id ? article_id : topics;
   useEffect(() => {
     setisLoading(true);
-    fetchArticles(article_id).then((res) => {
+    fetchArticles(displayArticle).then((res) => {
       setArticleById(res.article);
       setisLoading(false);
     });
-  }, [article_id]);
+  }, [displayArticle]);
 
   return (
     <>
@@ -57,7 +58,7 @@ export const SingleArticle = () => {
               }
             )}
 
-            <Comments article_id={article_id} />
+            <Comments displayArticle={displayArticle} />
           </div>
         </section>
       )}

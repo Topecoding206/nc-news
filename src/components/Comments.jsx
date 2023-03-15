@@ -3,7 +3,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { UserContext } from "../context/UserContext";
 import { deleteComment, fetchComments } from "../utility/api";
 import { AddComment } from "./AddComment";
-export const Comments = ({ article_id }) => {
+export const Comments = ({ displayArticle }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -11,11 +11,11 @@ export const Comments = ({ article_id }) => {
   const [comfirmDelete, setComfirmDelete] = useState(false);
   useEffect(() => {
     setisLoading(true);
-    fetchComments(article_id).then((data) => {
+    fetchComments(displayArticle).then((data) => {
       setComments(data);
       setisLoading(false);
     });
-  }, [article_id]);
+  }, [displayArticle]);
 
   useEffect(() => {
     if (comfirmDelete) {
@@ -42,7 +42,7 @@ export const Comments = ({ article_id }) => {
     <div>
       <section className="comment-container">
         {comments.map(
-          ({ author, body, article_id, comment_id, votes, created_at }) => {
+          ({ author, body, displayArticle, comment_id, votes, created_at }) => {
             return (
               <div className="comment-body">
                 <p>
@@ -60,7 +60,7 @@ export const Comments = ({ article_id }) => {
         )}
       </section>
       <div>
-        <AddComment setComments={setComments} article_id={article_id} />
+        <AddComment setComments={setComments} displayArticle={displayArticle} />
       </div>
     </div>
   );

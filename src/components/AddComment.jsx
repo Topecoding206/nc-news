@@ -2,7 +2,7 @@ import { postComment } from "../utility/api";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 
-export const AddComment = ({ article_id, setComments }) => {
+export const AddComment = ({ displayArticle, setComments }) => {
   const [text, setText] = useState("");
   const [validate, setValidate] = useState(true);
   const [err, setErr] = useState(true);
@@ -21,7 +21,7 @@ export const AddComment = ({ article_id, setComments }) => {
         });
         setText("");
       }
-      postComment(article_id, { ...user, body: text })
+      postComment(displayArticle, { ...user, body: text })
         .then(() => {
           alert("Your comment is successfully updated");
         })

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchArticlesByTopic, fetchTopics } from "../utility/api";
 import { Articles } from "./Articles";
-import { Home } from "./Home";
 import { SingleArticle } from "./SingleArticle";
 
 export const Topics = () => {
@@ -36,7 +35,9 @@ export const Topics = () => {
         {topicsState.map(({ slug }) => {
           return (
             <Link to={`/articles/${slug}`}>
-              <li key={slug}>{slug}</li>
+              <li key={slug} className="text-color">
+                {slug}
+              </li>
             </Link>
           );
         })}

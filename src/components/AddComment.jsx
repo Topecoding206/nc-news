@@ -6,6 +6,7 @@ export const AddComment = ({ displayArticle, setComments }) => {
   const [text, setText] = useState("");
   const [validate, setValidate] = useState(true);
   const [err, setErr] = useState(true);
+  const [showMessage, setShowMessage] = useState("");
   const { user } = useContext(UserContext);
 
   const handleSubmit = (e) => {
@@ -20,10 +21,19 @@ export const AddComment = ({ displayArticle, setComments }) => {
           return [...current, { author: user.username, body: text }];
         });
         setText("");
+        setShowMessage("");
       }
       postComment(displayArticle, { ...user, body: text })
-        .then(() => {
+        .then((res) => {
           alert("Your comment is successfully updated");
+          setComments((currentComments) => {
+            return [
+              ...currentComments.filter(
+                (current) => current.comment_id !== undefined
+              ),
+              ...res,
+            ];
+          });
         })
         .catch(() => {
           alert("something went wrong your comment is not updated");
@@ -34,12 +44,22 @@ export const AddComment = ({ displayArticle, setComments }) => {
         });
     }
   };
+
   return (
     <div className="post-comment-container">
-      <button>Add Comment</button>
-      <div>
+      <button
+        className="margin-top"
+        onClick={() => setShowMessage("show-post-commment")}
+      >
+        Add Comment
+      </button>
+      <div className={`popup-container ${showMessage}`}>
         <form onSubmit={handleSubmit}>
-          {validate ? <small></small> : <small>input field is empty</small>}
+          {validate ? (
+            <small></small>
+          ) : (
+            <small className="warning">input field is empty</small>
+          )}
           <div>
             <label htmlFor="message">Message</label>
             <br />
@@ -53,7 +73,7 @@ export const AddComment = ({ displayArticle, setComments }) => {
             ></textarea>
           </div>
           <button>Submit</button>
-          <button>Close</button>
+          <button onClick={() => setShowMessage("")}>Close</button>
         </form>
       </div>
     </div>

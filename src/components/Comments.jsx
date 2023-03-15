@@ -9,6 +9,7 @@ export const Comments = ({ displayArticle }) => {
   const { user } = useContext(UserContext);
   const [deleteId, setDeleteId] = useState();
   const [comfirmDelete, setComfirmDelete] = useState(false);
+  const [showComment, setShowComment] = useState("");
   useEffect(() => {
     setisLoading(true);
     fetchComments(displayArticle).then((data) => {
@@ -24,9 +25,17 @@ export const Comments = ({ displayArticle }) => {
           (current) => current.comment_id !== deleteId
         );
       });
-      deleteComment(deleteId).then(() => {
-        alert("comment successfully deleted!!!");
-      });
+      deleteComment(deleteId)
+        .then(() => {
+          alert("comment successfully deleted!!!");
+        })
+        .catch((comment) => {
+          console.log(comment.message);
+          setComments((current) => {
+            return [...current];
+          });
+          alert("something went wrong your comment is not deleted");
+        });
     }
   }, [deleteId, comfirmDelete]);
 
@@ -40,7 +49,23 @@ export const Comments = ({ displayArticle }) => {
     <p className="center">Loading ...</p>
   ) : (
     <div>
-      <section className="comment-container">
+      <h3
+        className={`center-button  ${
+          showComment.length > 1 ? "hide" : "display"
+        }`}
+        onClick={() => setShowComment("display")}
+      >
+        View Comments
+      </h3>
+      <h3
+        className={`center-button ${
+          showComment.length < 1 ? "hide" : "display"
+        }`}
+        onClick={() => setShowComment("")}
+      >
+        Hide Comments
+      </h3>
+      <section className={`comment-container ${showComment}`}>
         {comments.map(
           ({ author, body, displayArticle, comment_id, votes, created_at }) => {
             return (

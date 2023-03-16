@@ -8,10 +8,9 @@ export const fetchArticles = (sort, order) => {
   const url = `/articles`;
   if (sort === "comment_count") {
     return api.get(url).then(({ data }) => {
-      if (order === "desc" && sort === "comment_count") {
+      if (order === "desc") {
         return data.articles.sort((a, b) => b.comment_count - a.comment_count);
-      }
-      {
+      } else {
         return data.articles.sort((a, b) => a.comment_count - b.comment_count);
       }
     });

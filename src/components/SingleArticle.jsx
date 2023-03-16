@@ -36,7 +36,11 @@ export const SingleArticle = () => {
                 votes,
               }) => {
                 return (
-                  <article key={article_id} className="article_container">
+                  <article
+                    key={article_id}
+                    className="article_container"
+                    id="#"
+                  >
                     <p key={created_at}>
                       <strong>Date Posted:</strong>
                       {` ${new Date(created_at).toDateString()},

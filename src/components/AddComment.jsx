@@ -47,12 +47,14 @@ export const AddComment = ({ displayArticle, setComments }) => {
 
   return (
     <div className="post-comment-container">
-      <button
-        className="margin-top"
-        onClick={() => setShowMessage("show-post-commment")}
-      >
-        Add Comment
-      </button>
+      <a href="#">
+        <button
+          className="margin-top"
+          onClick={() => setShowMessage("show-post-commment")}
+        >
+          Add Comment
+        </button>
+      </a>
       <div className={`popup-container ${showMessage}`}>
         <form onSubmit={handleSubmit}>
           {validate ? (

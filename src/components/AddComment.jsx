@@ -2,29 +2,29 @@ import { postComment } from "../utility/api";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 
-export const AddComment = ({ article_id, setComments }) => {
+export const AddComment = ({ displayArticle, setComments }) => {
   const [text, setText] = useState("");
   const [validate, setValidate] = useState(true);
   const [err, setErr] = useState(true);
+  const [showMessage, setShowMessage] = useState("");
   const { user } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (err) {
-      console.log(err);
       if (text.length < 1) {
         return setValidate(false);
       } else {
         setValidate(true);
-
-        setComments((current) => {
-          return [...current, { author: user.username, body: text }];
-        });
         setText("");
+        setShowMessage("");
       }
-      postComment(article_id, { ...user, body: text })
-        .then(() => {
+      postComment(displayArticle, { ...user, body: text })
+        .then((res) => {
           alert("Your comment is successfully updated");
+          setComments((currentComments) => {
+            return [...currentComments, ...res];
+          });
         })
         .catch(() => {
           alert("something went wrong your comment is not updated");
@@ -35,12 +35,24 @@ export const AddComment = ({ article_id, setComments }) => {
         });
     }
   };
+
   return (
     <div className="post-comment-container">
-      <button>Add Comment</button>
-      <div>
+      <a href="#">
+        <button
+          className="margin-top"
+          onClick={() => setShowMessage("show-post-commment")}
+        >
+          Add Comment
+        </button>
+      </a>
+      <div className={`popup-container ${showMessage}`}>
         <form onSubmit={handleSubmit}>
-          {validate ? <small></small> : <small>input field is empty</small>}
+          {validate ? (
+            <small></small>
+          ) : (
+            <small className="warning">input field is empty</small>
+          )}
           <div>
             <label htmlFor="message">Message</label>
             <br />
@@ -54,7 +66,7 @@ export const AddComment = ({ article_id, setComments }) => {
             ></textarea>
           </div>
           <button>Submit</button>
-          <button>Close</button>
+          <button onClick={() => setShowMessage("")}>Close</button>
         </form>
       </div>
     </div>

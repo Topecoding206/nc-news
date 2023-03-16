@@ -24,7 +24,7 @@ export const ArticleCard = ({
       <p key={author}>Author: {author}</p>
       <VoteArticle article_id={article_id} votes={votes} />
       <p className="center-button">
-        <Link to={`/articles/${article_id}`}>
+        <Link to={`/articles/${topic}/${article_id}`}>
           <button>View more details</button>
         </Link>
       </p>

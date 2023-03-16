@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchArticlesByTopic, fetchTopics } from "../utility/api";
 import { Articles } from "./Articles";
+import { SingleArticle } from "./SingleArticle";
 
 export const Topics = () => {
   const [topicsState, setTopicsState] = useState([]);
@@ -24,7 +25,9 @@ export const Topics = () => {
     });
   }, [topics]);
 
-  return isLoading ? (
+  return +topics ? (
+    <SingleArticle />
+  ) : isLoading ? (
     <p className="center">Loading ...</p>
   ) : (
     <section>
@@ -32,7 +35,9 @@ export const Topics = () => {
         {topicsState.map(({ slug }) => {
           return (
             <Link to={`/articles/${slug}`}>
-              <li key={slug}>{slug}</li>
+              <li key={slug} className="text-color">
+                {slug}
+              </li>
             </Link>
           );
         })}

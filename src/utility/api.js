@@ -23,7 +23,9 @@ export const AddVote = (id, inc_votes) => {
 };
 
 export const postComment = (id, body) => {
-  return api.post(`/articles/${id}/comment`, body);
+  return api.post(`/articles/${id}/comment`, body).then(({ data }) => {
+    return data.comment;
+  });
 };
 
 export const fetchTopics = () => {
@@ -42,4 +44,10 @@ export const fetchArticlesByTopic = (topic, sort, order) => {
     .then(({ data }) => {
       return data;
     });
+};
+
+export const deleteComment = (id) => {
+  return api.delete(`/comments/${id}`).then(({ data }) => {
+    return data.comment;
+  });
 };

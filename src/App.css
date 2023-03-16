@@ -7,6 +7,15 @@
   list-style: none;
   text-decoration: none;
 }
+:root {
+  --card-bg: #eff4f7;
+  --text-color: #f9f9f9;
+
+  --button-text: #f4917e;
+  --body-bg: #675cab;
+  --comment-card: #0b0622;
+}
+
 .block {
   display: block;
   text-align: center;
@@ -16,14 +25,22 @@ header {
   text-align: center;
   margin-bottom: 1em;
 }
-
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--body-bg);
+}
 /* nav */
 .navigation ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* column-gap: 12em; */
   font-size: 1.3rem;
+  margin-bottom: 2em;
+}
+.nav-body li {
+  color: var(--button-text);
 }
 
 /* home */
@@ -53,11 +70,17 @@ img {
 }
 .articles-container article {
   width: 90%;
+  background-color: var(--card-bg);
+  padding: 0.5em;
+  border-radius: 20px;
 }
 
-button {
+button,
+h3 {
   font-size: 1.2rem;
   cursor: pointer;
+
+  color: var(--button-text);
 }
 
 .center {
@@ -73,6 +96,9 @@ button {
   width: 90%;
   margin: 0 auto;
   text-align: center;
+  background-color: var(--card-bg);
+  padding: 0.5em;
+  border-radius: 20px;
 }
 
 .cta {
@@ -91,11 +117,14 @@ button {
 .comment-container {
   width: 90%;
   height: 200px;
-  border: 1px solid;
+
   overflow-y: scroll;
   margin: 0 auto;
   margin-bottom: 2em;
   padding: 0.5em;
+  display: none;
+  background-color: var(--comment-card);
+  color: var(--text-color);
 }
 .new-comment {
   text-align: center;
@@ -125,8 +154,8 @@ textarea {
   border: 2px solid;
 }
 .post-comment-container {
-  border: 1px solid;
   text-align: center;
+  padding: 1em;
 }
 .post-comment-container button {
   margin-left: 1em;
@@ -135,9 +164,41 @@ textarea {
   display: flex;
   justify-content: space-evenly;
   font-size: 1.3rem;
-  border: 1px solid;
+
   margin-bottom: 1em;
 }
+.comment-body {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+}
+.popup-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: gray;
+  padding: 3em;
+  overflow: hidden;
+  display: none;
+}
+.text-color {
+  color: var(--button-text);
+}
+.warning {
+  color: red;
+}
+.show-post-commment,
+.display {
+  display: block;
+}
+.margin-top {
+  margin-bottom: 1em;
+}
+.hide {
+  display: none;
+}
+
 @media screen and (min-width: 600px) {
   .sort-container {
     font-size: 1.4rem;
@@ -175,6 +236,9 @@ textarea {
   .comment-container {
     font-size: 1.4rem;
   }
+  .article_container {
+    width: 70%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -206,6 +270,9 @@ textarea {
 
   .comment-container {
     height: 400px;
+    width: 60%;
+  }
+  .article_container {
     width: 60%;
   }
 }

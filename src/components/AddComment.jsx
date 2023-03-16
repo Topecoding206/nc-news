@@ -16,10 +16,6 @@ export const AddComment = ({ displayArticle, setComments }) => {
         return setValidate(false);
       } else {
         setValidate(true);
-
-        setComments((current) => {
-          return [...current, { author: user.username, body: text }];
-        });
         setText("");
         setShowMessage("");
       }
@@ -27,12 +23,7 @@ export const AddComment = ({ displayArticle, setComments }) => {
         .then((res) => {
           alert("Your comment is successfully updated");
           setComments((currentComments) => {
-            return [
-              ...currentComments.filter(
-                (current) => current.comment_id !== undefined
-              ),
-              ...res,
-            ];
+            return [...currentComments, ...res];
           });
         })
         .catch(() => {

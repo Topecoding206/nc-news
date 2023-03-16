@@ -41,7 +41,9 @@ export const AddComment = ({ displayArticle, setComments }) => {
       <a href="#">
         <button
           className="margin-top"
-          onClick={() => setShowMessage("show-post-commment")}
+          onClick={() =>
+            setShowMessage(user.name === "Guest" ? "" : "show-post-commment")
+          }
         >
           Add Comment
         </button>

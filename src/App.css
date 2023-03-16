@@ -202,7 +202,30 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
-
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2em;
+  margin-bottom: 2em;
+}
+.users-wrapper img {
+  width: 20%;
+}
+.users-wrapper li {
+  width: 40%;
+  background-color: var(--card-bg);
+  text-align: center;
+}
+.users-wrapper button {
+  background-color: var(--comment-card);
+  border-radius: 20px;
+  font-size: 1rem;
+}
+marquee h4 {
+  color: red;
+  background-color: transparent;
+}
 @media screen and (min-width: 600px) {
   .sort-container {
     font-size: 1.4rem;
@@ -242,6 +265,15 @@ textarea {
   }
   .article_container {
     width: 70%;
+  }
+  .users-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 2em;
+    justify-content: center;
+  }
+  .users-wrapper button {
+    font-size: 1.3rem;
   }
 }
 

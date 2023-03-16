@@ -75,3 +75,9 @@ export const deleteComment = (id) => {
     return data.comment;
   });
 };
+
+export const fetchUsers = () => {
+  return api.get("/users").then(({ data }) => {
+    return data.users;
+  });
+};

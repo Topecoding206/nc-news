@@ -8,6 +8,7 @@ import { SingleArticle } from "./components/SingleArticle";
 import { Topics } from "./components/Topics";
 import { SortNav } from "./components/SortNav";
 import { ErrorHandlerPage } from "./components/ErrorHandlerPage";
+import { Users } from "./components/Users";
 function App() {
   const [querySort, setQuerySort] = useState();
   const [queryOrder, setQueryOrder] = useState("desc");
@@ -50,6 +51,8 @@ function App() {
           path="/articles/:topics"
           element={<Topics queryOrder={queryOrder} querySort={querySort} />}
         />
+
+        <Route path="/*" element={<Users />} />
         <Route path="/*" element={<ErrorHandlerPage />} />
       </Routes>
     </div>

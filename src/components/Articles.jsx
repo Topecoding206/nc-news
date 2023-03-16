@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
+import { fetchArticles, fetchArticlesByTopic } from "../utility/api";
 import { ArticleCard } from "./ArticleCard";
-export const Articles = ({ articles, topicArticles }) => {
-  const displayArticles = articles ? articles : topicArticles;
+export const Articles = ({ querySort, queryOrder, topics }) => {
+  const [displayArticles, setArticlesDisplayArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    if (topics) {
+      setIsLoading(true);
+      fetchArticlesByTopic(topics, querySort, queryOrder)
+        .then((articles) => {
+          setArticlesDisplayArticles(articles);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setArticlesDisplayArticles([]);
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(true);
+      fetchArticles(querySort, queryOrder).then((articles) => {
+        setArticlesDisplayArticles(articles);
 
-  return (
+        setIsLoading(false);
+      });
+    }
+  }, [topics, querySort, queryOrder]);
+
+  return isLoading ? (
+    <p className="center">Loading ...</p>
+  ) : (
     <div className="articles-container">
       {displayArticles.map(
         ({
@@ -13,6 +39,7 @@ export const Articles = ({ articles, topicArticles }) => {
           created_at,
           article_img_url,
           votes,
+          comment_count,
         }) => {
           return (
             <ArticleCard
@@ -23,6 +50,7 @@ export const Articles = ({ articles, topicArticles }) => {
               article_img_url={article_img_url}
               article_id={article_id}
               votes={votes}
+              comment_count={comment_count}
             />
           );
         }

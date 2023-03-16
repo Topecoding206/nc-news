@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticles } from "../utility/api";
+import { fetchSingleArticle } from "../utility/api";
 import { Comments } from "./Comments";
 import { VoteArticle } from "./VoteArticle";
 
@@ -11,7 +11,7 @@ export const SingleArticle = () => {
   const displayArticle = article_id ? article_id : topics;
   useEffect(() => {
     setisLoading(true);
-    fetchArticles(displayArticle).then((res) => {
+    fetchSingleArticle(displayArticle).then((res) => {
       setArticleById(res.article);
       setisLoading(false);
     });

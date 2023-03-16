@@ -85,7 +85,7 @@ h3 {
 
 .center {
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -197,6 +197,10 @@ textarea {
 }
 .hide {
   display: none;
+}
+.vote-comment-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (min-width: 600px) {

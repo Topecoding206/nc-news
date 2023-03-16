@@ -8,6 +8,7 @@ export const ArticleCard = ({
   created_at,
   article_img_url,
   votes,
+  comment_count,
 }) => {
   return (
     <article key={article_id}>
@@ -22,7 +23,12 @@ export const ArticleCard = ({
       </Link>
       <p key={title}>Title: {title}</p>
       <p key={author}>Author: {author}</p>
-      <VoteArticle article_id={article_id} votes={votes} />
+      <div className="vote-comment-container">
+        <VoteArticle article_id={article_id} votes={votes} />
+        <p>
+          {comment_count} {+comment_count > 1 ? "comments" : "comment"}
+        </p>
+      </div>
       <p className="center-button">
         <Link to={`/articles/${topic}/${article_id}`}>
           <button>View more details</button>

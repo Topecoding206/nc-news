@@ -2,25 +2,35 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSingleArticle } from "../utility/api";
 import { Comments } from "./Comments";
+import { ErrorHandlerPage } from "./ErrorHandlerPage";
 import { VoteArticle } from "./VoteArticle";
 
 export const SingleArticle = () => {
   const { article_id, topics } = useParams();
   const [articleById, setArticleById] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [articleError, setArticleError] = useState(false);
   const displayArticle = article_id ? article_id : topics;
   useEffect(() => {
-    setisLoading(true);
-    fetchSingleArticle(displayArticle).then((res) => {
-      setArticleById(res.article);
-      setisLoading(false);
-    });
+    setIsLoading(true);
+    fetchSingleArticle(displayArticle)
+      .then((res) => {
+        setArticleById(res.article);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setArticleError(error.message);
+        setArticleById([]);
+        setIsLoading(false);
+      });
   }, [displayArticle]);
 
   return (
     <>
       {isLoading ? (
         <p className="center">Loading...</p>
+      ) : articleError ? (
+        <ErrorHandlerPage articleError={articleError} />
       ) : (
         <section>
           <div>

@@ -7,19 +7,24 @@ import { Nav } from "./components/Nav";
 import { SingleArticle } from "./components/SingleArticle";
 import { Topics } from "./components/Topics";
 import { SortNav } from "./components/SortNav";
+import { ErrorHandlerPage } from "./components/ErrorHandlerPage";
 function App() {
   const [querySort, setQuerySort] = useState();
   const [queryOrder, setQueryOrder] = useState("desc");
   const [searchParams, setSearchParams] = useSearchParams({});
   const [hideSort, setHideSort] = useState("display");
   useEffect(() => {
-    if (hideSort === "hide") {
-      setSearchParams({ order: queryOrder || "created_at" });
+    if (querySort === undefined) {
+      setSearchParams({});
     } else {
-      setSearchParams({
-        sort_by: querySort,
-        order: queryOrder || "created_at",
-      });
+      if (hideSort === "hide") {
+        setSearchParams({ order: queryOrder });
+      } else {
+        setSearchParams({
+          sort_by: querySort ? querySort : "created_at",
+          order: queryOrder,
+        });
+      }
     }
   }, [queryOrder, querySort, hideSort, setSearchParams]);
   return (
@@ -45,6 +50,7 @@ function App() {
           path="/articles/:topics"
           element={<Topics queryOrder={queryOrder} querySort={querySort} />}
         />
+        <Route path="/*" element={<ErrorHandlerPage />} />
       </Routes>
     </div>
   );

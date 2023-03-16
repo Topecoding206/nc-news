@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchArticlesByTopic, fetchTopics } from "../utility/api";
+import { fetchTopics } from "../utility/api";
 import { Articles } from "./Articles";
 import { SingleArticle } from "./SingleArticle";
 
-export const Topics = () => {
+export const Topics = ({ queryOrder, querySort }) => {
   const [topicsState, setTopicsState] = useState([]);
-  const [topicArticles, setTopicArticles] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const { topics } = useParams();
 
@@ -17,13 +16,6 @@ export const Topics = () => {
       setisLoading(false);
     });
   }, []);
-  useEffect(() => {
-    setisLoading(true);
-    fetchArticlesByTopic(topics).then((res) => {
-      setTopicArticles(res.articles);
-      setisLoading(false);
-    });
-  }, [topics]);
 
   return +topics ? (
     <SingleArticle />
@@ -45,7 +37,7 @@ export const Topics = () => {
       <p className="center-button">
         <strong>{topics}</strong>
       </p>
-      <Articles topicArticles={topicArticles} />
+      <Articles topics={topics} queryOrder={queryOrder} querySort={querySort} />
     </section>
   );
 };

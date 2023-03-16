@@ -4,7 +4,30 @@ const api = axios.create({
   baseURL: "https://first-backend-project-nsxj.onrender.com/api",
 });
 
-export const fetchArticles = (article_id) => {
+export const fetchArticles = (sort, order) => {
+  const url = `/articles`;
+  if (sort === "comment_count") {
+    return api.get(url).then(({ data }) => {
+      if (order === "desc") {
+        return data.articles.sort((a, b) => b.comment_count - a.comment_count);
+      } else {
+        return data.articles.sort((a, b) => a.comment_count - b.comment_count);
+      }
+    });
+  }
+
+  return api
+    .get(url, {
+      params: {
+        sort_by: sort,
+        order: order,
+      },
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
+};
+export const fetchSingleArticle = (article_id) => {
   const url = `/articles${article_id === undefined ? "" : `/${article_id}`}`;
 
   return api.get(url).then(({ data }) => {
@@ -39,10 +62,11 @@ export const fetchArticlesByTopic = (topic, sort, order) => {
     .get("/articles", {
       params: {
         topic: topic,
+        order: order,
       },
     })
     .then(({ data }) => {
-      return data;
+      return data.articles;
     });
 };
 

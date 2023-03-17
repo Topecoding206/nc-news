@@ -52,7 +52,7 @@ function App() {
           element={<Topics queryOrder={queryOrder} querySort={querySort} />}
         />
 
-        <Route path="/*" element={<Users />} />
+        <Route path="/users" element={<Users />} />
         <Route path="/*" element={<ErrorHandlerPage />} />
       </Routes>
     </div>

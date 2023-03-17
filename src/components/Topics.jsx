@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchTopics } from "../utility/api";
 import { Articles } from "./Articles";
+
 import { SingleArticle } from "./SingleArticle";
 
 export const Topics = ({ queryOrder, querySort }) => {
@@ -34,9 +35,11 @@ export const Topics = ({ queryOrder, querySort }) => {
           );
         })}
       </ul>
-      <p className="center-button">
-        <strong>{topics}</strong>
-      </p>
+      {+topics ? (
+        <p className="center-button">
+          <strong>{topics}</strong>
+        </p>
+      ) : null}
       <Articles topics={topics} queryOrder={queryOrder} querySort={querySort} />
     </section>
   );

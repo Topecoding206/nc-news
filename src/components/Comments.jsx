@@ -10,12 +10,17 @@ export const Comments = ({ displayArticle }) => {
   const [deleteId, setDeleteId] = useState();
   const [comfirmDelete, setComfirmDelete] = useState(false);
   const [showComment, setShowComment] = useState("");
+  const [commentError, setcommentError] = useState();
   useEffect(() => {
     setisLoading(true);
-    fetchComments(displayArticle).then((data) => {
-      setComments(data);
-      setisLoading(false);
-    });
+    fetchComments(displayArticle)
+      .then((data) => {
+        setComments(data);
+        setisLoading(false);
+      })
+      .catch((err) => {
+        setcommentError(err.message);
+      });
   }, [displayArticle]);
 
   useEffect(() => {
@@ -30,11 +35,10 @@ export const Comments = ({ displayArticle }) => {
           alert("comment successfully deleted!!!");
         })
         .catch((comment) => {
-          console.log(comment.message);
           setComments((current) => {
             return [...current];
           });
-          alert("something went wrong your comment is not deleted");
+          alert(`${comment.message} your comment is not deleted`);
         });
     }
   }, [deleteId, comfirmDelete]);
@@ -47,6 +51,8 @@ export const Comments = ({ displayArticle }) => {
   };
   return isLoading ? (
     <p className="center">Loading ...</p>
+  ) : commentError ? (
+    <p>{commentError}</p>
   ) : (
     <div>
       <h3
@@ -65,6 +71,7 @@ export const Comments = ({ displayArticle }) => {
       >
         Hide Comments
       </h3>
+
       <section className={`comment-container ${showComment}`}>
         {comments.map(
           ({ author, body, displayArticle, comment_id, votes, created_at }) => {

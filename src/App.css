@@ -219,10 +219,13 @@ textarea {
   background-color: var(--comment-card);
   border-radius: 20px;
   font-size: 1rem;
+  color: #fff;
 }
-marquee h4 {
+.delete-comment {
+  cursor: pointer;
+}
+.delete-comment:hover {
   color: red;
-  background-color: transparent;
 }
 @media screen and (min-width: 600px) {
   .sort-container {

@@ -82,7 +82,10 @@ export const Comments = ({ displayArticle }) => {
                   <span>{body}</span>
                 </p>
                 {author === user.username ? (
-                  <p onClick={() => handleDelete(comment_id)}>
+                  <p
+                    onClick={() => handleDelete(comment_id)}
+                    className="delete-comment"
+                  >
                     <AiFillDelete />
                   </p>
                 ) : null}

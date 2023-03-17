@@ -3,15 +3,26 @@ export const Nav = ({ setHideSort }) => {
   return (
     <nav className="navigation">
       <ul className="nav-body">
-        <Link to="/">
-          <li onClick={() => setHideSort("display")}>All Articles</li>
-        </Link>
-        <Link to="/articles/coding">
-          <li onClick={() => setHideSort("hide")}>Topics</li>
-        </Link>
-        <Link to="/users">
-          <li>Users</li>
-        </Link>
+        <li>
+          <Link to="/">
+            <button type="button" onClick={() => setHideSort("display")}>
+              All Articles
+            </button>
+          </Link>
+        </li>
+        <li>
+          <Link to="/articles/coding">
+            <button type="button" onClick={() => setHideSort("hide")}>
+              Topics
+            </button>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/users">
+            <button type="button">Users</button>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

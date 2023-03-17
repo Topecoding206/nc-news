@@ -36,12 +36,12 @@ export const VoteArticle = ({ article_id, votes }) => {
 
   return (
     <div>
-      <button
+      <span
         onClick={handleVoteCount}
         className={`${checkClick ? "unchecked" : "checked"}`}
       >
         <AiFillLike />
-      </button>
+      </span>
       <span> {vote}</span>
     </div>
   );

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchTopics } from "../utility/api";
 import { Articles } from "./Articles";
-
 import { SingleArticle } from "./SingleArticle";
 
 export const Topics = ({ queryOrder, querySort }) => {
@@ -27,11 +26,9 @@ export const Topics = ({ queryOrder, querySort }) => {
       <ul className="flex">
         {topicsState.map(({ slug }) => {
           return (
-            <Link to={`/articles/${slug}`}>
-              <li key={slug} className="text-color">
-                {slug}
-              </li>
-            </Link>
+            <li key={slug} className="text-color">
+              <Link to={`/articles/${slug}`}>{slug}</Link>
+            </li>
           );
         })}
       </ul>

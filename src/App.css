@@ -28,9 +28,7 @@ header {
 html {
   scroll-behavior: smooth;
 }
-body {
-  background-color: var(--body-bg);
-}
+
 /* nav */
 .navigation ul {
   display: flex;
@@ -40,7 +38,7 @@ body {
   margin-bottom: 2em;
 }
 .nav-body li {
-  color: var(--button-text);
+  /* color: var(--button-text); */
 }
 
 /* home */
@@ -80,7 +78,7 @@ h3 {
   font-size: 1.2rem;
   cursor: pointer;
 
-  color: var(--button-text);
+  /* color: var(--button-text); */
 }
 
 .center {

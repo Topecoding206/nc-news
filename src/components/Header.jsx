@@ -10,10 +10,10 @@ export const Header = () => {
         <button onClick={logOut}>Log out</button>
       ) : (
         <marquee width="50%" direction="left">
-          <h4>
+          <h3>
             As a guest user you can't like post, delete comment or post comment.
             kindly Log in from users page thank you.
-          </h4>
+          </h3>
         </marquee>
       )}
     </header>

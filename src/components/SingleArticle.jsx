@@ -63,10 +63,12 @@ export const SingleArticle = () => {
                     <p key={title}>
                       <strong>Title:</strong> {title}
                     </p>
-                    <p className="justify">
+                    <p className="justify" key={"Description"}>
                       <strong className="block">Description:</strong> {body}
                     </p>
-                    <VoteArticle votes={votes} article_id={article_id} />
+                    <p key={article_id}>
+                      <VoteArticle votes={votes} article_id={article_id} />
+                    </p>
                   </article>
                 );
               }
